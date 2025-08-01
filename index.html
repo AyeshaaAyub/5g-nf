@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>5G Network Functions</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { text-align: center; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      background: #f9f9f9;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .card:hover {
+      background: #e0f0ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>5G Network Functions</h1>
+  <div class="grid" id="nfGrid"></div>
+
+  <script src="data.js"></script>
+  <script>
+    const grid = document.getElementById("nfGrid");
+
+    nfData.forEach(nf => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<h3>${nf.name}</h3><p>${nf.description}</p>`;
+      card.onclick = () => {
+        localStorage.setItem("selectedNF", nf.name);
+        window.location.href = "nf.html";
+      };
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

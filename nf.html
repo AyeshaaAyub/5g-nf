@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>NF APIs</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { text-align: center; }
+    ul { list-style: none; padding: 0; }
+    li {
+      background: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 8px 0;
+      transition: 0.3s;
+    }
+    li:hover {
+      background: #e0f0ff;
+    }
+    a { text-decoration: none; color: blue; }
+    button {
+      background: #007bff;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+  <button onclick="goBack()">⬅ Back</button>
+  <h1 id="nfTitle"></h1>
+  <ul id="apiList"></ul>
+
+  <script src="data.js"></script>
+  <script>
+    function goBack() {
+      window.location.href = "index.html";
+    }
+
+    const selectedNF = localStorage.getItem("selectedNF");
+    const nf = nfData.find(n => n.name === selectedNF);
+
+    if (nf) {
+      document.getElementById("nfTitle").textContent = `${nf.name} - APIs`;
+      const list = document.getElementById("apiList");
+
+      nf.apis.forEach(api => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${api.name}</strong> — <a href="${api.url}" target="_blank">${api.url}</a>`;
+        list.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
